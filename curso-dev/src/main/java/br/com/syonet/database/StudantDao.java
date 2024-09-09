@@ -61,7 +61,7 @@ public class StudantDao implements StudantRepository {
   }
 
   @Override
-public boolean update(Studant studant) {
+  public boolean update(Studant studant) {
     String sql = "UPDATE students SET name = ?, age = ?, email = ? WHERE id = ?";
     try (PreparedStatement prst = this.connection.prepareStatement(sql)) {
         prst.setString(1, studant.getName());
@@ -74,11 +74,10 @@ public boolean update(Studant studant) {
         log.warning(e.getMessage());
         throw new RuntimeException(e);
     }
-}
+  }
 
-
-@Override
-public List<Studant> findByName(String name) {
+  @Override
+  public List<Studant> findByName(String name) {
     String sql = "SELECT id, name, age, email FROM students WHERE name LIKE ?";
     try (PreparedStatement prst = this.connection.prepareStatement(sql)) {
         prst.setString(1, "%" + name + "%");
@@ -92,10 +91,10 @@ public List<Studant> findByName(String name) {
         log.warning(e.getMessage());
         throw new RuntimeException(e);
     }
-}
+  }
 
-@Override
-public boolean removeStudant(long id) {
+  @Override
+  public boolean removeStudant(long id) {
     String sql = "DELETE FROM students WHERE id = ?";
     try (PreparedStatement prst = this.connection.prepareStatement(sql)) {
         prst.setLong(1, id);
@@ -105,10 +104,10 @@ public boolean removeStudant(long id) {
         log.warning(e.getMessage());
         throw new RuntimeException(e);
     }
-}
+  }
 
-@Override
-public Studant findById(long id) {
+  @Override
+  public Studant findById(long id) {
     String sql = "SELECT id, name, age, email FROM students WHERE id = ?";
     try (PreparedStatement prst = this.connection.prepareStatement(sql)) {
         prst.setLong(1, id);
@@ -121,5 +120,5 @@ public Studant findById(long id) {
         log.warning(e.getMessage());
         throw new RuntimeException(e);
     }
-}
+  }
 }

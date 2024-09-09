@@ -9,5 +9,4 @@ public interface StudantRepository {
   boolean removeStudant(long id);
   Studant findById(long id);
   List<Studant> findByName(String name);
-
 }
